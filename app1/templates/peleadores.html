@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Ring Warriors Gym - Conoce a nuestros peleadores</title>
+    <meta name="description" content="Descripción de tu página">
+
+    <!-- Estilos -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Estilos internos -->
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+
+    <!-- JavaScript -->
+    <!-- Jquery -->
+    <script src="{% static 'js/jquery.min.js '%}"></script>
+    <script src="{% static 'js/popper.min.js '%}"></script>
+
+    <!-- JS Internos -->
+    <!-- Archivo functions.js es para uso general en todo el sitio-->
+    <script src="{% static 'js/functions.js '%}"></script>
+
+    <!-- Archivo fetch_api.js Contine la logica para la llamada a la API de conversion de monedas/divisas-->
+    <script src="{% static 'js/fetch_api.js '%}"></script>
+    <script src="{% static 'js/market.js '%}"></script>
+
+    <!-- JS Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md flex-column flex-md-row bd-navbar" style="background-color: #28a745;">
+        <div class="container">
+            <!-- Agregar el logo -->
+            <a class="navbar-brand text-center logoGym" href="./index.html">
+                <span>Ring</span><br />
+                <img src="{% static 'img/logo.png'%}" alt="Logo" style="max-height: 52px;"><br />
+                <span>Warriors Gym</span>
+            </a>
+            <button class="navbar-toggler navbar-custom-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="navbar-menu-center">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./cursos.html">Curso</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./tienda.html">Tienda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./couch.html">Couch</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./peleadores.html">Peleadores</a>
+                        </li>
+                    </ul>
+                </div>
+                <ul class="navbar-nav ml-md-auto">
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal"
+                            data-target="#modalLogin">Login</button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="modal"
+                            data-target="#modalRegisted">Registro</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido de la página -->
+    <div class="container mt-4">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+                <div class="card h-100"> 
+                    <img src="{%static 'img/imagen_peleador1.jpg'%}" class="card-img-top mx-auto d-block"
+                        alt="Imagen del Peleador">
+                    <div class="card-body">
+                        <h5 class="card-title">Martin Vargas</h5>
+                        <p class="card-text">País: Chile</p>
+                        <p class="card-text">Título: Campeón Mundial de Peso Mediano</p>
+                        <p class="card-text">Victorias: 45</p>
+                        <p class="card-text">Martin Vargas es una leyenda del boxeo chileno, conocido por su técnica
+                            impecable y su resistencia inquebrantable en el ring. Ha defendido su título mundial en
+                            numerosas ocasiones, ganándose el respeto de aficionados y rivales por igual.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{%static 'img/imagen_peleador2.jpg'%}" class="card-img-top mx-auto d-block"
+                        alt="Imagen del Peleador">
+                    <div class="card-body">
+                        <h5 class="card-title">Juan López</h5>
+                        <p class="card-text">País: México</p>
+                        <p class="card-text">Título: Campeón Mundial de Peso Ligero</p>
+                        <p class="card-text">Victorias: 52</p>
+                        <p class="card-text">Juan López es un ícono del boxeo mexicano, reconocido por su agresividad en
+                            el ring y su habilidad para conectar golpes devastadores. Ha dominado la división de peso
+                            ligero durante años, enfrentando y derrotando a algunos de los mejores boxeadores del mundo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{%static 'img/imagen_peleador3.jpg'%}" class="card-img-top mx-auto d-block"
+                        alt="Imagen del Peleador">
+                    <div class="card-body">
+                        <h5 class="card-title">Anna Smith</h5>
+                        <p class="card-text">País: Estados Unidos</p>
+                        <p class="card-text">Título: Campeona Mundial de Peso Pluma</p>
+                        <p class="card-text">Victorias: 38</p>
+                        <p class="card-text">Anna Smith es una de las boxeadoras más talentosas de Estados Unidos,
+                            conocida por su velocidad y agilidad en el ring. Ha dominado la división de peso pluma
+                            durante años, ganando numerosas peleas y defendiendo su título con éxito contra oponentes de
+                            todo el mundo.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{%static 'img/imagen_peleador4.jpg'%}" class="card-img-top mx-auto d-block"
+                        alt="Imagen del Peleador">
+                    <div class="card-body">
+                        <h5 class="card-title">André Silva</h5>
+                        <p class="card-text">País: Brasil</p>
+                        <p class="card-text">Título: Campeón Mundial de Peso Pesado</p>
+                        <p class="card-text">Victorias: 41</p>
+                        <p class="card-text">André Silva es una fuerza imparable en el mundo del boxeo pesado. Conocido
+                            por su fuerza bruta y su capacidad para noquear a sus oponentes, ha dominado la división de
+                            peso pesado durante años, consolidándose como uno de los mejores del mundo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{%static 'img/imagen_peleador5.jpg'%}" class="card-img-top mx-auto d-block"
+                        alt="Imagen del Peleador">
+                    <div class="card-body">
+                        <h5 class="card-title">Yuki Tanaka</h5>
+                        <p class="card-text">País: Japón</p>
+                        <p class="card-text">Título: Campeón Mundial de Peso Mosca</p>
+                        <p class="card-text">Victorias: 49</p>
+                        <p class="card-text">Yuki Tanaka es una sensación del boxeo japonés, conocido por su velocidad y
+                            agilidad en el ring. Ha dominado la división de peso mosca durante años, enfrentando y
+                            derrotando a algunos de los mejores boxeadores del mundo con su estilo técnico y preciso.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{%static 'img/imagen_peleador6.webp'%}" class="card-img-top mx-auto d-block"
+                        alt="Imagen del Peleador">
+                    <div class="card-body">
+                        <h5 class="card-title">Maria Garcia</h5>
+                        <p class="card-text">País: España</p>
+                        <p class="card-text">Título: Campeona Mundial de Peso Wélter</p>
+                        <p class="card-text">Victorias: 36</p>
+                        <p class="card-text">Maria Garcia es una de las boxeadoras más talentosas de España, conocida
+                            por su fuerza y ​​determinación en el ring. Ha dominado la división de peso wélter durante
+                            años, enfrentándose a desafíos difíciles y emergiendo como campeona una y otra vez.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Footer -->
+    <footer class="footer py-3 bg-dark text-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="list-inline mb-0 footer-social-icons">
+                        <li class="list-inline-item">
+                            <a href="#" class="text-light" alt="Enlace a Facebook" title="Facebook">
+                                <img src="{% static 'img/facebook.png'%}" alt="Facebook">
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="text-light" alt="Enlace a Twitter" title="Twitter">
+                                <img src="{% static 'img/facebook.png'%}" alt="Twitter">
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="text-light" alt="Enlace a Instagram" title="Instagram">
+                                <img src="{% static 'img/instagram.png'%}" alt="Instagram">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">&copy; 2024 Ring Warriors Gym <img src="{% static 'img/logo.png'%}"alt="Logo"
+                            style="max-height: 32px;">. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Registro -->
+    <div class="modal fade" id="modalRegisted" tabindex="-1" role="dialog" aria-labelledby="modalRegistedLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Registrarse</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="registerName">Nombre</label>
+                            <input type="text" class="form-control" id="registerName" placeholder="Ingresa tu nombre">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerLastname">Apellido Paterno</label>
+                            <input type="text" class="form-control" id="registerNameAP" placeholder="Ingresa tu Apellido Paterno">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerLastname">Apellido Materno</label>
+                            <input type="text" class="form-control" id="registerNameAM" placeholder="Ingresa tu Apellido Materno">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerEmail">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="registerEmail"
+                                placeholder="Ingresa tu correo electrónico">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPassword">Contraseña</label>
+                            <input type="password" class="form-control" id="registerPassword"
+                                placeholder="Ingresa tu contraseña">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPassword">Confirmar Contraseña</label>
+                            <input type="password" class="form-control" id="CregisterPassword"
+                                placeholder="Ingresa tu Confirmacion de contraseña">
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Registrarse</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Login -->
+    <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLoginLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Iniciar Sesión</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="loginEmail">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="loginEmail"
+                                placeholder="Ingresa tu correo electrónico">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Contraseña</label>
+                            <input type="password" class="form-control" id="loginPassword"
+                                placeholder="Ingresa tu contraseña">
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Iniciar Sesión</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,205 @@
+ /* Estilo para fijar el footer al fondo */
+ html,
+ body {
+     height: 100%;
+     margin: 0;
+     padding: 0;
+ }
+
+ .footer {
+     margin-top: 10px;
+     width: 100%;
+ }
+
+ /* Estilos para el carrusel */
+ .carousel-item img {
+     width: 100%;
+     /* Ocupar todo el ancho disponible */
+     height: auto;
+     /* Para mantener la proporción */
+ }
+
+ .carousel-control-prev,
+ .carousel-control-next {
+     background-color: black;
+     /* Cambiar el color de fondo a negro */
+     border-color: white;
+     /* Cambiar el color del borde a blanco */
+ }
+
+ /* Estilo para que las imágenes del carousel tengan bordes redondeados */
+ .carousel-item img {
+     border-radius: 10px;
+ }
+
+ /* Estilo para centrar los elementos del menú principal */
+ .navbar-menu-center {
+     display: flex;
+     justify-content: center;
+ }
+
+ /* Estilo para limitar el tamaño máximo de las imágenes del carousel */
+ .carousel-item img {
+     max-width: 900px;
+     max-height: 400px;
+     width: 600px;
+     height: 400px;
+ }
+
+ /* Estilo para el texto de las leyendas del carrusel */
+ .carousel-caption h5,
+ .carousel-caption p {
+     color: white;
+     /* Color del texto blanco */
+     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+     /* Sombra negra */
+     -webkit-text-stroke: 1px black;
+     /* Borde negro */
+     text-stroke: 1px black;
+     /* Borde negro */
+ }
+
+
+
+
+ .modal-header,
+ h4,
+ .close {
+     background-color: #5cb85c;
+     color: white !important;
+     text-align: center;
+     font-size: 30px;
+ }
+
+ .modal-footer {
+     background-color: #f9f9f9;
+ }
+
+ .navbar-nav .nav-link {
+     color: #fff;
+     /* Color del texto */
+     font-weight: bold;
+     /* Peso de la fuente */
+     text-transform: uppercase;
+     /* Convertir el texto a mayúsculas */
+     transition: color 0.3s;
+     /* Transición suave para el color del texto */
+ }
+
+ .logoGym {
+     color: #fff;
+     /* Color del texto */
+     font-weight: bold;
+     /* Peso de la fuente */
+     text-transform: uppercase;
+     /* Convertir el texto a mayúsculas */
+     transition: color 0.3s;
+     /* Transición suave para el color del texto */
+ }
+
+ .navbar-nav .nav-link:hover {
+     color: #ffc107;
+     /* Color del texto al pasar el mouse */
+ }
+
+ /* Estilo para los iconos de redes sociales en el footer */
+ .footer-social-icons img {
+     text-align: center;
+     width: 24px;
+     height: 24px;
+     border-radius: 10px;
+     /* Esquinas redondeadas */
+     border: 0px solid black;
+     /* Borde de 1 píxel negro */
+     margin-right: 10px;
+     /* Espacio entre los iconos */
+ }
+
+ /* Estilo para centrar los titulos de cada Card */
+ .card-title {
+     text-align: center;
+ }
+
+ /* Estilo para centrar los imagenes de cada Card y definir un tamaño predeterminado */
+ .card-img-top {
+    text-align: center;
+     margin-top: 10px;
+     width: 400px;
+     height: 400px;
+ }
+
+ .card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 3px solid rgba(0, 0, 0, .250);
+    border-radius: .25rem;
+}
+
+ /* Estilo para adicionar indentado y justificado a todos los parrafos */
+ p {
+     text-indent: 2em;
+     text-align: justify;
+ }
+
+ .row{
+    margin-top: 20px !important;
+ }
+
+ .card-body a{
+    text-align: right !important;
+ }
+
+ .navbar-custom-toggler {
+    background-image: url('../img/navbaricon.jpg');
+    background-size: cover;
+    width: 30px; /* Ancho personalizado para el icono */
+    height: 30px; /* Altura personalizada para el icono */
+    border: 0px solid black; /* Borde negro */
+}
+
+.nav-item button{
+    margin-left: 10px;
+    margin-top: 5px;
+    width: 80px;
+}
+
+/* Estilos para cursos */
+.product-modal .left-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.product-modal .left-side img {
+    max-width: 100%;
+    width: 368px;
+    height: 368px;
+    padding: 10px;
+    border-radius: 50px;
+    border: 2px solid black; /* Aquí definimos el borde de 2px de ancho y de color negro */
+}
+
+
+.product-modal .right-side {
+    padding: 20px;
+}
+.small-select {
+    width: 50%;
+    display: inline-block;
+}
+
+/* Formato SPAN precio cursos */
+.card-price {
+    font-weight: bold;
+    color: #4CAF50; /* Color verde, puedes cambiarlo según tus preferencias */
+    font-size: 1.2em; /* Tamaño de fuente, ajusta según sea necesario */
+}
