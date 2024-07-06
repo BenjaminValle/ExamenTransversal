@@ -28,7 +28,7 @@ function obtenerTitulo() {
 * Funcion para ejecutar de manera automatica al cargar
 */
 (function () {
-    animateTitle(obtenerTitulo(), 150);    
+    animateTitle(obtenerTitulo(), 150);
 })();
 
 /*
@@ -60,43 +60,43 @@ function obtenerTitulo() {
 * Funcion para ejecutar de manera automatica al cargar
 */
 (function () {
-    animateTitle(obtenerTitulo(), 150);    
+    animateTitle(obtenerTitulo(), 150);
 })();
 
 
 
-$(document).ready(function() {
+$(document).ready(function () {
     // Manejador del evento submit para el formulario de registro
-    $('#modalRegisted').find('#registerForm').on('submit', function(event) {
+    $('#modalRegisted').find('#registerForm').on('submit', function (event) {
         event.preventDefault();
         handleFormSubmission($(this));
     });
 
     // Manejador del evento submit para el formulario de inicio de sesión
-    $('#modalLogin').find('form').on('submit', function(event) {
+    $('#modalLogin').find('form').on('submit', function (event) {
         event.preventDefault();
         handleFormSubmission($(this));
     });
 
     // Manejador del evento blur para los campos del formulario de registro
-    $('#modalRegisted').find('#registerName, #registerEmail, #registerPassword, #registerNameAP, #registerNameAM, #CregisterPassword').on('blur', function() {
+    $('#modalRegisted').find('#registerName, #registerEmail, #registerPassword, #registerNameAP, #registerNameAM, #CregisterPassword').on('blur', function () {
         validateField($(this));
         toggleSubmitButton($(this).closest('.modal'));
     });
 
     // Manejador del evento blur para los campos del formulario de inicio de sesión
-    $('#modalLogin').find('input').on('blur', function() {
+    $('#modalLogin').find('input').on('blur', function () {
         validateField($(this));
         toggleSubmitButton($(this).closest('.modal'));
     });
 
     // Manejador del evento click para el botón "Registrarse"
-    $('#modalRegisted').find('.modal-footer button[type="button"]').on('click', function(event) {
+    $('#modalRegisted').find('.modal-footer button[type="button"]').on('click', function (event) {
         handleButtonClick($(this), event);
     });
 
     // Manejador del evento click para el botón "Iniciar Sesión"
-    $('#modalLogin').find('.modal-footer button[type="button"]').on('click', function(event) {
+    $('#modalLogin').find('.modal-footer button[type="button"]').on('click', function (event) {
         handleButtonClick($(this), event);
     });
 
@@ -114,9 +114,6 @@ $(document).ready(function() {
         if (!validateForm($form)) {
             alert('Por favor complete todos los campos.');
             event.preventDefault();
-        } else {
-            alert("Validacion exitosa, redirigiendo");
-            clearForms()
         }
     }
 
@@ -124,11 +121,11 @@ $(document).ready(function() {
         $('#modalRegisted').find('input').val('');
         $('#modalLogin').find('input').val('');
     }
-    
+
 
     function validateForm($form) {
         var isValid = true;
-        $form.find('input').each(function() {
+        $form.find('input').each(function () {
             if (!validateField($(this))) {
                 isValid = false;
             }
@@ -166,7 +163,7 @@ $(document).ready(function() {
     function validateField($field) {
         var value = $field.val().trim();
         var isValid = true;
-    
+
         if (value === '') {
             showError($field, 'Por favor completa este campo.');
             isValid = false;
@@ -201,10 +198,10 @@ $(document).ready(function() {
                     clearError($field);
             }
         }
-    
+
         return isValid;
     }
-    
+
 
     function validateEmail(email) {
         var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -230,3 +227,4 @@ $(document).ready(function() {
         $modal.find('.modal-footer button[type="button"]').prop('disabled', hasErrors);
     }
 });
+

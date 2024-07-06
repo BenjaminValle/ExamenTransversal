@@ -1,396 +1,236 @@
-<!DOCTYPE html>
-<html lang="es">
+{% extends 'base.html' %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load static %}
-    <title>Ring Warriors Gym - Nuetros Cursos</title>
-    <meta name="description" content="Descripción de tu página">
+{% block title %}Ring Warriors Gym - Nuestros Cursos{% endblock %}
 
-    <!-- Estilos -->
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{% block extra_head %}
+{% endblock %}
 
-    <!-- Estilos internos -->
-    <link rel="stylesheet" href="{% static 'css/style.css'%}">
-
-    <!-- JavaScript -->
-    <!-- Jquery -->
-    <script src="{% static 'js/jquery.min.js '%}"></script>
-    <script src="{% static 'js/popper.min.js '%}"></script>
-
-    <!-- JS Internos -->
-    <!-- Archivo functions.js es para uso general en todo el sitio-->
-    <script src="{% static 'js/functions.js '%}"></script>
-
-    <!-- Archivo fetch_api.js Contine la logica para la llamada a la API de conversion de monedas/divisas-->
-    <script src="{% static 'js/fetch_api.js '%}"></script>
-    <script src="{% static 'js/market.js '%}"></script>
-
-    <!-- JS Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-
-</head>
-
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-md flex-column flex-md-row bd-navbar" style="background-color: #28a745;">
-        <div class="container">
-            <!-- Agregar el logo -->
-            <a class="navbar-brand text-center logoGym" href="./index.html">
-                <span>Ring</span><br />
-                <img src="{% static 'img/logo.png'%}" alt="Logo" style="max-height: 52px;"><br />
-                <span>Warriors Gym</span>
-            </a>
-            <button class="navbar-toggler navbar-custom-toggler" type="button" data-toggle="collapse"
-                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <div class="navbar-menu-center">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="./cursos.html">Curso</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./tienda.html">Tienda</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./couch.html">Couch</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./peleadores.html">Peleadores</a>
-                        </li>
-                    </ul>
-                </div>
-                <ul class="navbar-nav ml-md-auto">
-                    <li class="nav-item">
-                        <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal"
-                            data-target="#modalLogin">Login</button>
-                    </li>
-                    <li class="nav-item">
-                        <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="modal"
-                            data-target="#modalRegisted">Registro</button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Contenido de la página -->
-    <div class="container mt-4 tienda">
-        <div class="row row-cols-1 row-cols-md-2 g-4">
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{% static 'img/curso01.jpg'%}" class="card-img-top mx-auto" alt="curso 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Curso de Boxeo Fundamentals</h5>
-                        <p class="card-text">Sumérgete en el emocionante mundo del boxeo con nuestro curso diseñado para
-                            principiantes. Aprende los fundamentos del boxeo, desde la postura adecuada hasta los golpes
-                            básicos, mientras te pones en forma y mejoras tu resistencia.</p>
-
-                        <p class="text-center">Valor Curso $<span class="card-price">50.000</span> CLP</p>
-                        <div class="text-center">
-                            <button type="button" class="btn btn-primary" onclick="handleButtonClick(1, 1)">Más
-                                información..</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{% static 'img/curso02.jpg'%}" class="card-img-top mx-auto" alt="curso 2">
-                    <div class="card-body text-right"> <!-- Añadida la clase text-right -->
-                        <h5 class="card-title">Curso de Boxeo Avanzado</h5>
-                        <p class="card-text">¿Buscas llevar tus habilidades de boxeo al siguiente nivel? Únete a nuestro
-                            curso avanzado, donde perfeccionarás tu técnica, trabajarás en combinaciones más complejas y
-                            mejorarás tu velocidad y agilidad bajo la guía de entrenadores expertos.</p>
-
-                        <p class="text-center">Valor Curso $<span class="card-price">70.000</span> CLP</p>
-                        <div class="text-center">
-                            <button type="button" class="btn btn-primary" onclick="handleButtonClick(1, 2)">Más
-                                información..</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="row row-cols-1 row-cols-md-2 g-4">
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{% static 'img/curso03.jpg'%}" class="card-img-top mx-auto" alt="curso 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Curso de Boxeo para la Defensa Personal</h5>
-                        <p class="card-text">Aprende a defenderte mientras te pones en forma con nuestro curso
-                            especializado en técnicas de boxeo para la defensa personal. Adquiere confianza, mejora tu
-                            coordinación y aprende estrategias efectivas para protegerte en situaciones reales.</p>
-
-                        <p class="text-center">Valor Curso $<span class="card-price">50.000</span> CLP</p>
-                        <div class="text-center">
-                            <button type="button" class="btn btn-primary" onclick="handleButtonClick(2, 1)">Más
-                                información..</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{% static 'img/curso04.png'%}" class="card-img-top mx-auto" alt="curso 4">
-                    <div class="card-body">
-                        <h5 class="card-title">Curso de Entrenamiento de Resistencia</h5>
-                        <p class="card-text">Mejora tu resistencia y resistencia cardiovascular con nuestro curso de
-                            entrenamiento de resistencia. Diseñado para desafiarte y llevarte al siguiente nivel, te
-                            ayudará a alcanzar tus objetivos de fitness y a sentirte más en forma que nunca.</p>
-
-                        <p class="text-center">Valor Curso $<span class="card-price">45.000</span> CLP</p>
-                        <div class="text-center">
-                            <button type="button" class="btn btn-primary" onclick="handleButtonClick(2,2)">Más
-                                información..</button>
-                        </div>
+{% block content %}
+<div class="container mt-4 tienda">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+            <div class="card h-100">
+                <img src="{% static 'img/curso01.jpg' %}" class="card-img-top mx-auto" alt="curso 1">
+                <div class="card-body">
+                    <h5 class="card-title">Curso de Boxeo Fundamentals</h5>
+                    <p class="card-text">Sumérgete en el emocionante mundo del boxeo con nuestro curso diseñado para
+                        principiantes. Aprende los fundamentos del boxeo, desde la postura adecuada hasta los golpes
+                        básicos, mientras te pones en forma y mejoras tu resistencia.</p>
+                    <p class="text-center">Valor Curso $<span class="card-price">50.000</span> CLP</p>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary button_sale" onclick="handleButtonClick(1, 1)">Más
+                            información..</button>
+                        <button class="btn btn-primary button_sale"
+                            onclick="addProductToCart('Curso de Boxeo Fundamentals', 1, 50000, 'curso01.jpg')">
+                            <img src="{% static 'img/add_cart.svg' %}" class="card-img-top mx-auto img-shopping-cart"
+                                alt="Curso de Boxeo Fundamentals">
+                            Agregar al carro
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row row-cols-1 row-cols-md-2 g-4">
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{% static 'img/curso05.jpg'%}" class="card-img-top mx-auto" alt="curso 5">
-                    <div class="card-body">
-                        <h5 class="card-title">Curso de Técnicas de Defensa Personal</h5>
-                        <p class="card-text">Aprende las habilidades y técnicas necesarias para defenderte en
-                            situaciones peligrosas con nuestro curso de técnicas de defensa personal. Desde técnicas
-                            básicas hasta estrategias avanzadas, este curso te preparará para cualquier situación.</p>
-
-                        <p class="text-center">Valor Curso $<span class="card-price">65.000</span> CLP</p>
-                        <div class="text-center">
-                            <button type="button" class="btn btn-primary" onclick="handleButtonClick(3, 1)">Más
-                                información..</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{% static 'img/curso06.jpg'%}" class="card-img-top mx-auto" alt="curso 6">
-                    <div class="card-body">
-                        <h5 class="card-title">Curso de Nutrición Deportiva</h5>
-                        <p class="card-text">Descubre cómo optimizar tu rendimiento y mejorar tus resultados con nuestro
-                            curso de nutrición deportiva. Aprende los fundamentos de una dieta equilibrada y
-                            personalizada para tus necesidades específicas como atleta o deportista.</p>
-
-                        <p class="text-center">Valor Curso $<span class="card-price">40.000</span> CLP</p>
-                        <div class="text-center">
-                            <button type="button" class="btn btn-primary" onclick="handleButtonClick(3,2)">Más
-                                información..</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row row-cols-1 row-cols-md-2 g-4">
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{% static 'img/curso07.jpg'%}" class="card-img-top mx-auto" alt="curso 7">
-                    <div class="card-body">
-                        <h5 class="card-title">Curso de Entrenamiento de Flexibilidad</h5>
-                        <p class="card-text">Mejora tu flexibilidad y movilidad con nuestro curso de entrenamiento de
-                            flexibilidad. Aprende estiramientos efectivos y técnicas de movilidad para mantener tus
-                            músculos y articulaciones en óptimas condiciones y prevenir lesiones.</p>
-
-                        <p class="text-center">Valor Curso $<span class="card-price">40.000</span> CLP</p>
-                        <div class="text-center">
-                            <button type="button" class="btn btn-primary" onclick="handleButtonClick(4, 1)">Más
-                                información..</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{% static 'img/curso08.jpg'%}" class="card-img-top mx-auto" alt="curso 8">
-                    <div class="card-body">
-                        <h5 class="card-title">Curso de Entrenamiento Mental</h5>
-                        <p class="card-text">Desarrolla tu fortaleza mental y tu enfoque con nuestro curso de
-                            entrenamiento mental. Aprende técnicas de visualización, control de la respiración y gestión
-                            del estrés para optimizar tu rendimiento en cualquier área de tu vida.</p>
-
-                        <p class="text-center">Valor Curso $<span class="card-price">50.000</span> CLP</p>
-                        <div class="text-center">
-                            <button type="button" class="btn btn-primary" onclick="handleButtonClick(4,2)">Más
-                                información..</button>
-                        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="{% static 'img/curso02.jpg' %}" class="card-img-top mx-auto" alt="curso 2">
+                <div class="card-body text-right">
+                    <h5 class="card-title">Curso de Boxeo Avanzado</h5>
+                    <p class="card-text">¿Buscas llevar tus habilidades de boxeo al siguiente nivel? Únete a nuestro
+                        curso avanzado, donde perfeccionarás tu técnica, trabajarás en combinaciones más complejas y
+                        mejorarás tu velocidad y agilidad bajo la guía de entrenadores expertos.</p>
+                    <p class="text-center">Valor Curso $<span class="card-price">70.000</span> CLP</p>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary button_sale" onclick="handleButtonClick(1, 2)">Más
+                            información..</button>
+                        <button class="btn btn-primary button_sale"
+                            onclick="addProductToCart('Curso de Boxeo Avanzado', 1, 70000, 'curso02.jpg')">
+                            <img src="{% static 'img/add_cart.svg' %}" class="card-img-top mx-auto img-shopping-cart"
+                                alt="Curso de Boxeo Avanzado">
+                            Agregar al carro
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-    <!-- Footer -->
-    <footer class="footer py-3 bg-dark text-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <ul class="list-inline mb-0 footer-social-icons">
-                        <li class="list-inline-item">
-                            <a href="#" class="text-light" alt="Enlace a Facebook" title="Facebook">
-                                <img src="{% static 'img/facebook.png'%}" alt="Facebook">
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#" class="text-light" alt="Enlace a Twitter" title="Twitter">
-                                <img src="{% static 'img/twiter.png'%}" alt="Twitter">
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#" class="text-light" alt="Enlace a Instagram" title="Instagram">
-                                <img src="{% static 'img/instagram.png'%}" alt="Instagram">
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <p class="mb-0">&copy; 2024 Ring Warriors Gym <img src="{% static 'img/logo.png'%}" alt="Logo"
-                            style="max-height: 32px;">. Todos los derechos reservados.</p>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+            <div class="card h-100">
+                <img src="{% static 'img/curso03.jpg' %}" class="card-img-top mx-auto" alt="curso 3">
+                <div class="card-body">
+                    <h5 class="card-title">Curso de Boxeo para la Defensa Personal</h5>
+                    <p class="card-text">Aprende a defenderte mientras te pones en forma con nuestro curso especializado
+                        en técnicas de boxeo para la defensa personal. Adquiere confianza, mejora tu coordinación y
+                        aprende estrategias efectivas para protegerte en situaciones reales.</p>
+                    <p class="text-center">Valor Curso $<span class="card-price">50.000</span> CLP</p>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary button_sale" onclick="handleButtonClick(2, 1)">Más
+                            información..</button>
+                        <button class="btn btn-primary button_sale"
+                            onclick="addProductToCart('Curso de Boxeo para la Defensa Personal', 1, 50000, 'curso03.jpg')">
+                            <img src="{% static 'img/add_cart.svg' %}" class="card-img-top mx-auto img-shopping-cart"
+                                alt="Curso de Boxeo para la Defensa Personal">
+                            Agregar al carro
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </footer>
-
-    <!-- Modal de Registro -->
-    <div class="modal fade" id="modalRegisted" tabindex="-1" role="dialog" aria-labelledby="modalRegistedLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Registrarse</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <!-- Modal Body -->
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="registerName">Nombre</label>
-                            <input type="text" class="form-control" id="registerName" placeholder="Ingresa tu nombre">
-                        </div>
-                        <div class="form-group">
-                            <label for="registerLastname">Apellido Paterno</label>
-                            <input type="text" class="form-control" id="registerNameAP" placeholder="Ingresa tu Apellido Paterno">
-                        </div>
-                        <div class="form-group">
-                            <label for="registerLastname">Apellido Materno</label>
-                            <input type="text" class="form-control" id="registerNameAM" placeholder="Ingresa tu Apellido Materno">
-                        </div>
-                        <div class="form-group">
-                            <label for="registerEmail">Correo Electrónico</label>
-                            <input type="email" class="form-control" id="registerEmail"
-                                placeholder="Ingresa tu correo electrónico">
-                        </div>
-                        <div class="form-group">
-                            <label for="registerPassword">Contraseña</label>
-                            <input type="password" class="form-control" id="registerPassword"
-                                placeholder="Ingresa tu contraseña">
-                        </div>
-                        <div class="form-group">
-                            <label for="registerPassword">Confirmar Contraseña</label>
-                            <input type="password" class="form-control" id="CregisterPassword"
-                                placeholder="Ingresa tu Confirmacion de contraseña">
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Modal Footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Registrarse</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal de Login -->
-    <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLoginLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Iniciar Sesión</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <!-- Modal Body -->
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="loginEmail">Correo Electrónico</label>
-                            <input type="email" class="form-control" id="loginEmail"
-                                placeholder="Ingresa tu correo electrónico">
-                        </div>
-                        <div class="form-group">
-                            <label for="loginPassword">Contraseña</label>
-                            <input type="password" class="form-control" id="loginPassword"
-                                placeholder="Ingresa tu contraseña">
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Modal Footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Iniciar Sesión</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal de Producto -->
-    <div class="modal fade product-modal" id="modalProducto" tabindex="-1" role="dialog"
-        aria-labelledby="modalProductoLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title" id="modalProductoLabel">Detalle del Producto</h4>
-                    <button type="button" class="close" onclick="cerrarModalProducto()">&times;</button>
-                </div>
-
-                <!-- Modal Body -->
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6 left-side">
-                            <img src="{% static 'img/curso01.jpg'%}" alt="Imagen del Producto">
-                            <p class="description"></p>
-                        </div>
-                        <div class="col-md-6 right-side">
-                            <h5>Precio: $ <span id="productPrice"></span> CLP</h5>
-                            <div class="form-group">
-                                <label for="currencySelect">Selecciona la divisa:</label>
-                                <select class="form-control small-select" id="currencySelect" onchange="updatePrice()">
-                                    <option value="CLP" selected="select">CLP - Peso Chileno</option>
-                                    <option value="USD">USD - Dólar estadounidense</option>
-                                    <option value="EUR">EUR - Euro</option>
-                                    <option value="GBP">GBP - Libra esterlina</option>
-                                    <option value="JPY">JPY - Yen japonés</option>
-                                </select>
-                            </div>
-                            <p>Monto en <span id="finalCurrencySelect"></span> es de <span
-                                    id="finalCurrencyValue"></span></label>
-                            </p>
-                        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="{% static 'img/curso04.png' %}" class="card-img-top mx-auto" alt="curso 4">
+                <div class="card-body">
+                    <h5 class="card-title">Curso de Entrenamiento de Resistencia</h5>
+                    <p class="card-text">Mejora tu resistencia y resistencia cardiovascular con nuestro curso de
+                        entrenamiento de resistencia. Diseñado para desafiarte y llevarte al siguiente nivel, te ayudará
+                        a alcanzar tus objetivos de fitness y a sentirte más en forma que nunca.</p>
+                    <p class="text-center">Valor Curso $<span class="card-price">45.000</span> CLP</p>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary button_sale" onclick="handleButtonClick(2,2)">Más
+                            información..</button>
+                        <button class="btn btn-primary button_sale"
+                            onclick="addProductToCart('Curso de Entrenamiento de Resistencia', 1, 45000, 'curso04.png')">
+                            <img src="{% static 'img/add_cart.svg' %}" class="card-img-top mx-auto img-shopping-cart"
+                                alt="Curso de Entrenamiento de Resistencia">
+                            Agregar al carro
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+            <div class="card h-100">
+                <img src="{% static 'img/curso05.jpg' %}" class="card-img-top mx-auto" alt="curso 5">
+                <div class="card-body">
+                    <h5 class="card-title">Curso de Técnicas de Defensa Personal</h5>
+                    <p class="card-text">Aprende las habilidades y técnicas necesarias para defenderte en situaciones
+                        peligrosas con nuestro curso de técnicas de defensa personal. Desde técnicas básicas hasta
+                        estrategias avanzadas, este curso te preparará para cualquier situación.</p>
+                    <p class="text-center">Valor Curso $<span class="card-price">65.000</span> CLP</p>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary button_sale" onclick="handleButtonClick(3, 1)">Más
+                            información..</button>
+                        <button class="btn btn-primary button_sale"
+                            onclick="addProductToCart('Curso de Técnicas de Defensa Personal', 1, 65000, 'curso05.jpg')">
+                            <img src="{% static 'img/add_cart.svg' %}" class="card-img-top mx-auto img-shopping-cart"
+                                alt="Curso de Técnicas de Defensa Personal">
+                            Agregar al carro
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="{% static 'img/curso06.jpg' %}" class="card-img-top mx-auto" alt="curso 6">
+                <div class="card-body">
+                    <h5 class="card-title">Curso de Nutrición Deportiva</h5>
+                    <p class="card-text">Descubre cómo optimizar tu rendimiento y mejorar tus resultados con nuestro
+                        curso de nutrición deportiva. Aprende los fundamentos de una dieta equilibrada y personalizada
+                        para tus necesidades específicas como atleta o deportista.</p>
+                    <p class="text-center">Valor Curso $<span class="card-price">40.000</span> CLP</p>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary button_sale" onclick="handleButtonClick(3,2)">Más
+                            información..</button>
+                        <button class="btn btn-primary button_sale"
+                            onclick="addProductToCart('Curso de Nutrición Deportiva', 1, 40000, 'curso06.jpg')">
+                            <img src="{% static 'img/add_cart.svg' %}" class="card-img-top mx-auto img-shopping-cart"
+                                alt="Curso de Nutrición Deportiva">
+                            Agregar al carro
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+            <div class="card h-100">
+                <img src="{% static 'img/curso07.jpg' %}" class="card-img-top mx-auto" alt="curso 7">
+                <div class="card-body">
+                    <h5 class="card-title">Curso de Entrenamiento de Flexibilidad</h5>
+                    <p class="card-text">Mejora tu flexibilidad y movilidad con nuestro curso de entrenamiento de
+                        flexibilidad. Aprende estiramientos efectivos y técnicas de movilidad para mantener tus músculos
+                        y articulaciones en óptimas condiciones y prevenir lesiones.</p>
+                    <p class="text-center">Valor Curso $<span class="card-price">40.000</span> CLP</p>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary button_sale" onclick="handleButtonClick(4, 1)">Más
+                            información..</button>
+                        <button class="btn btn-primary button_sale"
+                            onclick="addProductToCart('Curso de Entrenamiento de Flexibilidad', 1, 40000, 'curso07.jpg')">
+                            <img src="{% static 'img/add_cart.svg' %}" class="card-img-top mx-auto img-shopping-cart"
+                                alt="Curso de Entrenamiento de Flexibilidad">
+                            Agregar al carro
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="{% static 'img/curso08.jpg' %}" class="card-img-top mx-auto" alt="curso 8">
+                <div class="card-body">
+                    <h5 class="card-title">Curso de Entrenamiento Mental</h5>
+                    <p class="card-text">Desarrolla tu fortaleza mental y tu enfoque con nuestro curso de entrenamiento
+                        mental. Aprende técnicas de visualización, control de la respiración y gestión del estrés para
+                        optimizar tu rendimiento en cualquier área de tu vida.</p>
+                    <p class="text-center">Valor Curso $<span class="card-price">50.000</span> CLP</p>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary button_sale" onclick="handleButtonClick(4,2)">Más
+                            información..</button>
+                        <button class="btn btn-primary button_sale"
+                            onclick="addProductToCart('Curso de Entrenamiento Mental', 1, 50000, 'curso08.jpg')">
+                            <img src="{% static 'img/add_cart.svg' %}" class="card-img-top mx-auto img-shopping-cart"
+                                alt="Curso de Entrenamiento Mental">
+                            Agregar al carro
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-</body>
+<!-- Modal de Producto -->
+<div class="modal fade product-modal" id="modalProducto" tabindex="-1" role="dialog"
+    aria-labelledby="modalProductoLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalProductoLabel">Detalle del Producto</h4>
+                <button type="button" class="close" onclick="cerrarModalProducto()">&times;</button>
+            </div>
 
-</html>
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 left-side">
+                        <img src="#" alt="Imagen del Producto">
+                        <p class="description"></p>
+                    </div>
+                    <div class="col-md-6 right-side">
+                        <h5>Precio: $ <span id="productPrice"></span> CLP</h5>
+                        <div class="form-group">
+                            <label for="currencySelect">Selecciona la divisa:</label>
+                            <select class="form-control small-select" id="currencySelect" onchange="updatePrice()">
+                                <option value="CLP" selected="select">CLP - Peso Chileno</option>
+                                <option value="USD">USD - Dólar estadounidense</option>
+                                <option value="EUR">EUR - Euro</option>
+                                <option value="GBP">GBP - Libra esterlina</option>
+                                <option value="JPY">JPY - Yen japonés</option>
+                            </select>
+                        </div>
+                        <p>Monto en <span id="finalCurrencySelect"></span> es de <span
+                                id="finalCurrencyValue"></span></label>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

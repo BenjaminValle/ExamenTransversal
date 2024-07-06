@@ -1,0 +1,26 @@
+.card-title {
+    text-align: center;
+}
+
+.card-img-top {
+    text-align: center;
+    margin-top: 10px;
+    width: 400px;
+    height: 400px;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 3px solid rgba(0, 0, 0, .250);
+    border-radius: .25rem;
+}
+
+.card-body a {
+    text-align: right !important;
+}

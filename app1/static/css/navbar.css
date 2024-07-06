@@ -1,0 +1,36 @@
+.navbar-menu-center {
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-nav .nav-link {
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffc107;
+}
+
+.logoGym {
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+.navbar-custom-toggler {
+    background-image: url('../img/navbaricon.jpg');
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    border: 0px solid black;
+}
+
+.nav-item button {
+    margin-left: 10px;
+    margin-top: 5px;
+    width: 120px;
+}

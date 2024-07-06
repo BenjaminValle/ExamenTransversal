@@ -1,1 +1,1 @@
-alert("Este es mi primer sitio de django con css y js :D");
+//alert("Este es mi primer sitio de django con css y js :D");

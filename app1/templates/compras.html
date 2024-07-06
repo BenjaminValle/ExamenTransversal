@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Historial de Compras</h2>
+<div class="accordion" id="comprasAccordion">
+    {% for compra in compras %}
+    <div class="card">
+        <div class="card-header" id="heading{{ compra.id }}">
+            <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                    data-target="#collapse{{ compra.id }}" aria-expanded="true" aria-controls="collapse{{ compra.id }}">
+                    Fecha: {{ compra.fecha_compra }} | Cantidad de Artículos: {{ compra.cantidad_articulos }} | Total: {{ compra.total }}
+                </button>
+            </h2>
+        </div>
+        <div id="collapse{{ compra.id }}" class="collapse" aria-labelledby="heading{{ compra.id }}" data-parent="#comprasAccordion">
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre del Artículo</th>
+                            <th>Cantidad</th>
+                            <th>Precio Unitario</th>
+                            <th>Precio Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for detalle in compra.detalleventa_set.all %}
+                        <tr>
+                            <td>{{ detalle.nombre_articulo }}</td>
+                            <td>{{ detalle.cantidad }}</td>
+                            <td>{{ detalle.valor_unitario }}</td>
+                            <td>{{ detalle.valor_total }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

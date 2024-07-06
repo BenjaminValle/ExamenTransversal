@@ -1,0 +1,72 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.pyo
+*.pyd
+*.py[cod]
+
+# Django
+*.log
+*.pot
+*.py[cod]
+*.sqlite3
+*.env
+db.sqlite3
+
+# Environments
+.env
+venv/
+ENV/
+env/
+.venv/
+
+# Editor
+.vscode/
+.idea/
+
+# Compiled files
+*.so
+
+# Static and media
+/staticfiles
+/media
+*.zip
+*.tar.gz
+
+# Django Migrations
+**/migrations/*
+!**/migrations/__init__.py
+
+# Docker
+*.log
+*.pid
+*.seed
+*.cover
+*.orig
+*.pyc
+*.sqlite3
+__pycache__/
+*.py[cod]
+.coverage
+.tox
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+*.mo
+*.pot
+*.log
+*.run
+*.d2
+*.j2
+*.jinja
+*.rst
+*.swp
+*.swo
+.DS_Store
+.Thumbs.db
+
+# JetBrains
+.idea/

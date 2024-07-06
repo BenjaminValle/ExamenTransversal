@@ -1,0 +1,14 @@
+#### Al iniciar el proyecto, asegurarse de ejecutar las migraciones
+#### Esto generara las tablas de la base de datos en base a cada uno de los modelos definidos en app1/models.py
+python manage.py makemigrations
+python manage.py migrate
+
+#### En caso de no tener creado el adminsitrador
+#### ejecutar este script
+python manage.py createsuperuser 
+
+
+
+### El desarrollo cuenta con 4 secciones cargadas con un template
+### posee login, registro, logout, ver historial
+### desde /admin se puede editar la base de datos

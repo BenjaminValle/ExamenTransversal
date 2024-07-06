@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Ring Warriors Gym{% endblock %}</title>
+    <meta name="description" content="Descripción de tu página">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'css/cards.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    <link rel="stylesheet" href="{% static 'css/modal.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/products.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shopping_cart.css' %}">
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+    <div class="content-wrapper d-flex flex-column min-vh-100">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-md flex-column flex-md-row bd-navbar" style="background-color: #28a745;">
+            <div class="container">
+                <a class="navbar-brand text-center logoGym" href="{% url 'index' %}">
+                    <span>Ring</span><br />
+                    <img src="{% static 'img/logo.png' %}" alt="Logo" style="max-height: 52px;"><br />
+                    <span>Warriors Gym</span>
+                </a>
+                <button class="navbar-toggler navbar-custom-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation"></button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="navbar-menu-center">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'cursos' %}">Curso</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'tienda' %}">Tienda</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'couch' %}">Couch</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'peleadores' %}">Peleadores</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="navbar-nav ml-md-auto">
+                        <!-- Solo se muestran si no se ha iniciado sesion-->
+                        {% if not user.is_authenticated %}
+                        <li class="nav-item">
+                            <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal"
+                                data-target="#modalLogin">Login</button>
+                        </li>
+                        <li class="nav-item">
+                            <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="modal"
+                                data-target="#modalRegisted">Registro</button>
+                        </li>
+                        {% endif %}
+
+                        <!-- Solo se debe mostrar al hacer login -->
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <form action="{% url 'compras' %}" method="get" class="d-inline">
+                                <button type="submit" class="btn btn-outline-warning btn-sm">Ver Historial</button>
+                            </form>
+                        </li>
+                        <li class="nav-item">
+                            <form action="{% url 'logout' %}" method="post" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-dark btn-sm">Desconectar</button>
+                            </form>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Carrito de compras -->
+            <div class="shopping-cart-container-icon menu2">
+                <div class="shopping-cart-container-cart-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="shopping-cart-icon-cart">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z">
+                        </path>
+                    </svg>
+                    <div class="shopping-cart-count-products">
+                        <span id="contador-productos">0</span>
+                    </div>
+                </div>
+
+                <div class="shopping-cart-container-cart-products hidden-cart">
+                    <div class="shopping-cart-products-list">
+                    </div>
+
+                    <div class="shopping-cart-cart-total hidden">
+                        <h3>Total:</h3>
+                        <span class="shopping-cart-total-pagar">$0</span>
+                        <p class="shopping-cart-cart-empty"></p>
+                    </div>
+                    <!-- Botón para el modal -->
+                    <div class="shopping-cart-cart-button">
+                        <button type="button" class="btn btn-outline-warning btn-sm" id="buyButton">Comprar</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Contenido dinámico -->
+        <main class="flex-grow-1">
+            {% block content %}{% endblock %}
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer py-3 bg-dark text-light mt-auto">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-inline mb-0 footer-social-icons">
+                            <li class="list-inline-item">
+                                <a href="#" class="text-light" alt="Enlace a Facebook" title="Facebook">
+                                    <img src="{% static 'img/facebook.png' %}" alt="Facebook">
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" class="text-light" alt="Enlace a Twitter" title="Twitter">
+                                    <img src="{% static 'img/twiter.png' %}" alt="Twitter">
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" class="text-light" alt="Enlace a Instagram" title="Instagram">
+                                    <img src="{% static 'img/instagram.png' %}" alt="Instagram">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <p class="mb-0">&copy; 2024 Ring Warriors Gym <img src="{% static 'img/logo.png' %}" alt="Logo"
+                                style="max-height: 32px;">. Todos los derechos reservados.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modales -->
+    <!-- Modal de Registro -->
+    <div class="modal fade" id="modalRegisted" tabindex="-1" role="dialog" aria-hidden="true"
+        aria-labelledby="modalRegistedLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Registrarse</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form id="registerForm" method="POST" novalidate>
+                        {% csrf_token %}
+                        <h5>Datos del Usuario</h5>
+                        <div class="form-group">
+                            <label for="registerName">Nombre</label>
+                            <input type="text" class="form-control" id="registerName" name="nombre"
+                                placeholder="Ingresa tu nombre">
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="registerNameAP">Apellido Paterno</label>
+                                    <input type="text" class="form-control" id="registerNameAP" name="ap_paterno"
+                                        placeholder="Ingresa tu Apellido Paterno">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="registerNameAM">Apellido Materno</label>
+                                    <input type="text" class="form-control" id="registerNameAM" name="ap_materno"
+                                        placeholder="Ingresa tu Apellido Materno">
+                                </div>
+                            </div>
+                        </div>
+
+                        <h5>Datos de Contacto</h5>
+                        <div class="form-group">
+                            <label for="registerEmail">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="registerEmail" name="email"
+                                placeholder="Ingresa tu correo electrónico">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerDireccion">Dirección</label>
+                            <input type="text" class="form-control" id="registerDireccion" name="direccion"
+                                placeholder="Ingresa tu dirección">
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="registerCiudad">Ciudad</label>
+                                <select class="form-control" id="registerCiudad" name="ciudad">
+                                    <option value="Santiago">Santiago</option>
+                                    <option value="Valparaíso">Valparaíso</option>
+                                    <option value="Concepción">Concepción</option>
+                                    <option value="La Serena">La Serena</option>
+                                    <option value="Antofagasta">Antofagasta</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="registerComuna">Comuna</label>
+                                <select class="form-control" id="registerComuna" name="comuna">
+                                    <!-- Agrega las comunas correspondientes aquí -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerFono">Teléfono</label>
+                            <input type="text" class="form-control" id="registerFono" name="fono"
+                                placeholder="Ingresa tu teléfono">
+                        </div>
+
+                        <h5>Contraseña</h5>
+                        <div class="form-row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="registerPassword">Contraseña</label>
+                                    <input type="password" class="form-control" id="registerPassword" name="password1"
+                                        placeholder="Ingresa tu contraseña">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="CregisterPassword">Confirmar Contraseña</label>
+                                    <input type="password" class="form-control" id="CregisterPassword" name="password2"
+                                        placeholder="Ingresa tu Confirmacion de contraseña">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="submitRegisterForm()">Registrarse</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Procesando -->
+    <div class="modal fade" id="modalProcessing" tabindex="-1" role="dialog" aria-hidden="true"
+        aria-labelledby="modalProcessingLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!-- Modal Body -->
+                <div class="modal-body text-center">
+                    <p>Procesando, por favor espera...</p>
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Login -->
+    <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-hidden="true"
+        aria-labelledby="modalLoginLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Iniciar Sesión</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form id="loginForm" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="loginEmail">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="loginEmail" name="email"
+                                placeholder="Ingresa tu correo electrónico">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Contraseña</label>
+                            <input type="password" class="form-control" id="loginPassword" name="password"
+                                placeholder="Ingresa tu contraseña">
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="submitLoginForm()">Iniciar Sesión</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Carro de Compras -->
+    <div class="modal fade" id="staticBackdrop" tabindex="-1" role="dialog" aria-hidden="true"
+        aria-labelledby="staticBackdropLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="staticBackdropLabel">Formulario de Compras</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="purchaseForm" method="POST" novalidate>
+                        {% csrf_token %}
+                        <h5>Datos del Usuario</h5>
+                        <div class="form-group">
+                            <label for="purchaseName">Nombres</label>
+                            <input type="text" class="form-control" id="purchaseName" name="nombre" required>
+                            <div class="invalid-feedback">
+                                Por favor, proporcione nombres válidos.
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="purchaseLastName">Apellidos</label>
+                            <input type="text" class="form-control" id="purchaseLastName" name="apellidos" required>
+                            <div class="invalid-feedback">
+                                Por favor, proporcione apellidos válidos.
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="purchaseEmail">Email</label>
+                            <input type="email" class="form-control" id="purchaseEmail" name="email" required>
+                            <div class="invalid-feedback">
+                                Por favor, proporcione un email válido.
+                            </div>
+                        </div>
+                        <h5>Datos de Contacto</h5>
+                        <div class="form-group">
+                            <label for="purchaseAddress">Dirección</label>
+                            <input type="text" class="form-control" id="purchaseAddress" name="direccion" required>
+                            <div class="invalid-feedback">
+                                Por favor, proporcione una dirección válida.
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="purchaseCity">Ciudad</label>
+                                <select class="form-control" id="purchaseCity" name="ciudad" required>
+                                    <option value="Santiago">Santiago</option>
+                                    <option value="Valparaíso">Valparaíso</option>
+                                    <option value="Concepción">Concepción</option>
+                                    <option value="La Serena">La Serena</option>
+                                    <option value="Antofagasta">Antofagasta</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Por favor, proporcione una ciudad válida.
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="purchaseComuna">Comuna</label>
+                                <select class="form-control" id="purchaseComuna" name="comuna" required>
+                                    <!-- Agrega las comunas correspondientes aquí -->
+                                </select>
+                                <div class="invalid-feedback">
+                                    Por favor, proporcione una comuna válida.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="purchasePhone">Fono</label>
+                            <input type="text" class="form-control" id="purchasePhone" name="fono" required>
+                            <div class="invalid-feedback">
+                                Por favor, proporcione un número de celular válido.
+                            </div>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="termsCheck" required>
+                            <label class="form-check-label" for="termsCheck">
+                                Acepto los términos y condiciones
+                            </label>
+                            <div class="invalid-feedback">
+                                Tienes que aceptar los términos antes de continuar.
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary" onclick="processPurchaseNoRegister()">Enviar formulario</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal de Éxito -->
+    <div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-hidden="true"
+        aria-labelledby="modalSuccessLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Usuario Registrado con Éxito</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Tu cuenta ha sido creada exitosamente.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="openLoginModal()">Iniciar Sesión</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" id="staticImgPath" name="staticImgPath" value="{% static 'img' %}" />
+    <script>
+        const isAuthenticated = {% if user.is_authenticated %}true{% else %} false{% endif %};
+    </script>
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="{% static 'js/functions.js' %}"></script>
+    <script src="{% static 'js/fetch_api.js' %}"></script>
+    <script src="{% static 'js/market.js' %}"></script>
+    <script src="{% static 'js/shopping_cart.js' %}"></script>
+    <script src="{% static 'js/registerClient.js' %}"></script>
+    <script src="{% static 'js/login.js' %}"></script>
+    <script src="{% static 'js/purchase.js' %}"></script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>

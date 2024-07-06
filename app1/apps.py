@@ -1,3 +1,4 @@
+# Proyecto1\app1\apps.py
 from django.apps import AppConfig
 
 

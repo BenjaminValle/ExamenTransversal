@@ -1,0 +1,23 @@
+.carousel-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    max-width: 900px;
+    max-height: 400px;
+    width: 600px;
+    height: 400px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    background-color: black;
+    border-color: white;
+}
+
+.carousel-caption h5,
+.carousel-caption p {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    -webkit-text-stroke: 1px black;
+    text-stroke: 1px black;
+}

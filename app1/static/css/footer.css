@@ -1,0 +1,27 @@
+/* footer.css */
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.footer {
+    margin-top: 5px;
+    width: 100%;
+    background-color: #343a40;
+    color: white;
+    padding: 20px 0;
+}
+
+.footer-social-icons img {
+    text-align: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 10px;
+    border: 0px solid black;
+    margin-right: 10px;
+}
+
+.footer p {
+    margin-bottom: 0;
+}
